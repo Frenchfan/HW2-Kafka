@@ -22,6 +22,6 @@ public class MetricsController {
     @Operation(summary = "Create fake metrics")
     public FakeMetrics postMetrics(@RequestBody FakeMetrics fakeMetrics) {
         log.info("Created fake metrics: {}", fakeMetrics);
-        return fakeMetricsService.sendFakeMetrics(fakeMetrics);
+        return fakeMetricsService.sendFakeMetrics(fakeMetrics, "com.sumkin.kafkaconsumer.model.FakeMetrics");
     }
 }

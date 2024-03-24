@@ -3,13 +3,13 @@ server:
 spring:
   application:
     name: KafkaConsumer
-  kafka:
-    bootstrap-servers: localhost:9092
-    my-topic: metrics-topic
-    consumer:
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      group-id: metrics-group
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    my-topic: metrics-topic
+#    consumer:
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      group-id: metrics-group
 
   datasource:
     url: jdbc:postgresql://localhost:5446/hw2?currentSchema=hw2

@@ -1,11 +1,10 @@
-package com.sumkin.kafkaconsumer.model;
+package com.sumkin.HW2.Kafka.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.context.annotation.Bean;
 
 @Setter
 @Getter

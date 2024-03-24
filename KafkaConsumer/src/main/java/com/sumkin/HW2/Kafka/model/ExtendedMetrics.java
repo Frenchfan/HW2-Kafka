@@ -1,4 +1,4 @@
-package com.sumkin.kafkaconsumer.model;
+package com.sumkin.HW2.Kafka.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
