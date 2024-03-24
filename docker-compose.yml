@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+
+  postgres3:
+    image: 'postgres:16.0'
+    container_name: 'postgres3'
+    environment:
+      - 'POSTGRES_DB=hw2'
+      - 'POSTGRES_PASSWORD=hw224032024'
+      - 'POSTGRES_USER=sumkin'
+    ports:
+      - '5446:5432'
+  #Zookeeper for Kafka
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    restart: on-failure
+
+  #Kafka broker
+  broker:
+    image: confluentinc/cp-kafka:7.3.2
+    container_name: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "49999:49999"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 100
+      KAFKA_JMX_PORT: 49999
+      KAFKA_MESSAGE_MAX_BYTES: 10000
+    restart: on-failure
+
+  #Redpanda console for Kafka
+  redpanda-console:
+    image: docker.redpanda.com/vectorized/console:v2.2.0
+    container_name: redpanda-console
+    ports:
+      - "7070:8080"
+    environment:
+      KAFKA_BROKERS: broker:29092
+    depends_on:
+      - broker
+    restart: on-failure
+
+networks:
+  metrics-network:
+    driver: bridge

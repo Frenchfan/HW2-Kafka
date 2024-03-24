@@ -1,0 +1,34 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: KafkaConsumer
+  kafka:
+    bootstrap-servers: localhost:9092
+    my-topic: metrics-topic
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: metrics-group
+
+  datasource:
+    url: jdbc:postgresql://localhost:5446/hw2?currentSchema=hw2
+    username: sumkin
+    password: hw224032024
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: hw2
+        format_sql: true
+        type: trace
+    show-sql: true
+
+  liquibase:
+    change-log: classpath:liquibase/changelog.yaml
+    enabled: true
+    default-schema: liquibase
+
+  preliquibase:
+    enabled: true
