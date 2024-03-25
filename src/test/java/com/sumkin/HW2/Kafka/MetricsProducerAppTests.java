@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MetricsProducerAppTests {
+class KafkaConsumerApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Your test logic here
 	}
 
 }

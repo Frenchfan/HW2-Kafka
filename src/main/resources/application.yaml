@@ -4,7 +4,7 @@ spring:
   application:
     name: Metrics Producer
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: broker:29092
     my-topic: metrics-topic
   security:
     user:

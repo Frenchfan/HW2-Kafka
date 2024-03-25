@@ -28,6 +28,7 @@ services:
       - zookeeper
     ports:
       - "9092:9092"
+      - "29092:29092"
       - "49999:49999"
     environment:
       KAFKA_BROKER_ID: 1
@@ -54,6 +55,45 @@ services:
       KAFKA_BROKERS: broker:29092
     depends_on:
       - broker
+    restart: on-failure
+
+  consumer:
+    build:
+      context: KafkaConsumer
+      dockerfile: Dockerfile
+    container_name: 'consumer'
+    ports:
+      - '8088:8088'
+    depends_on:
+      - 'producer'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres3:5432/hw2?currentSchema=hw2
+      SPRING_DATASOURCE_USERNAME: sumkin
+      SPRING_DATASOURCE_PASSWORD: hw224032024
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DEFAULT_SCHEMA: hw2
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: 'true'
+      SPRING_JPA_SHOW-SQL: 'true'
+      SPRING_LIQUIBASE_CHANGE-LOG: classpath:liquibase/changelog.yaml
+      SPRING_LIQUIBASE_ENABLED: 'true'
+      SPRING_LIQUIBASE_DEFAULT-SCHEMA: liquibase
+      SPRING_PRELIQUIBASE_ENABLED: 'true'
+      SPRINGDOC_OVERRIDE-WITH-GENERIC-RESPONSE: 'false'
+      SERVER_PORT: 8088
+      SPRING_KAFKA_BOOTSTRAP-SERVERS: broker:29092
+    restart: on-failure
+
+  producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'producer'
+    ports:
+      - '8087:8087'
+    depends_on:
+      - 'redpanda-console'
+    environment:
+      SPRING_KAFKA_BOOTSTRAP-SERVERS: broker:29092
     restart: on-failure
 
 networks:
