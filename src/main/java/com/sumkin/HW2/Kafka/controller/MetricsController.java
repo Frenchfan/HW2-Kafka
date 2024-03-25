@@ -3,7 +3,6 @@ package com.sumkin.HW2.Kafka.controller;
 import com.sumkin.HW2.Kafka.model.FakeMetrics;
 import com.sumkin.HW2.Kafka.service.FakeMetricsService;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 

@@ -3,10 +3,8 @@ package com.sumkin.HW2.Kafka.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.context.annotation.Bean;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Builder
 @Getter

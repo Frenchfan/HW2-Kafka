@@ -1,10 +1,7 @@
 package com.sumkin.HW2.Kafka.service;
 
 import com.sumkin.HW2.Kafka.model.FakeMetrics;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.beans.factory.annotation.Autowired;
