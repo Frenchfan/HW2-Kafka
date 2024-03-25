@@ -12,6 +12,8 @@
 В течение нескольких минут будут скачены все необходимые образы и собраны в образы приложения
 http://localhost:8087/swagger-ui/index.html - swagger для создания fake метрики.
 
+FakeMetrics состоит из 3-х полей: температура (temperature),влажность (humidity) и комментария (comment) 
+
 Все документировано, есть примеры. Для работы со swagger продюсера требуется авторизация!!!
 
 user и password - producer (реализована basic authorization)
