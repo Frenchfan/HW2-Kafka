@@ -2,15 +2,17 @@ package com.sumkin.HW2.Kafka.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.context.annotation.Bean;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+
+@Builder
 @Getter
 @Setter
 @RequiredArgsConstructor
+@AllArgsConstructor
 @ToString
 @Entity(name = "extended_metrics")
 @Schema(description = "Extended metrics")
@@ -27,7 +29,7 @@ public class ExtendedMetrics {
     @Column(name = "authorized_user")
     private String authorizedUser;
     @Schema(description = "Timestamp")
-    private String timestamp;
+    private Instant timestamp;
     @Schema(description = "Temperature")
     private int temperature;
     @Schema(description = "Humidity")

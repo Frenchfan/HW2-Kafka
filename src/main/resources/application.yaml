@@ -13,12 +13,3 @@ spring:
     user:
       name: producer
       password: producer
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    metrics:
-      enabled: true
